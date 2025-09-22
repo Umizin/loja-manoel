@@ -90,3 +90,43 @@ curl -X POST http://localhost:3000/empacotar \
 ### Teste Unitário com Jest
 
 <img width="559" height="213" alt="image" src="https://github.com/user-attachments/assets/9cab448f-6c35-4670-9048-af7333a41d09" />
+
+### Exercício 2 - Horários de Aula
+    1. A quantidade de horas que cada professor tem comprometido em aulas - Então faça uma consulta SQL que traga essa informação.
+        SELECT
+    PROFESSOR.name AS nome_do_professor,
+    SUM(TIMESTAMPDIFF(HOUR, CLASS_SCHEDULE.start_time, CLASS_SCHEDULE.end_time)) AS horas_semanais_comprometidas
+    FROM
+        PROFESSOR
+    INNER JOIN
+        CLASS ON CLASS.professor_id = PROFESSOR.id -- Premissa: CLASS tem a chave estrangeira professor_id
+    INNER JOIN
+        CLASS_SCHEDULE ON CLASS_SCHEDULE.class_id = CLASS.id
+    GROUP BY
+        PROFESSOR.name
+    ORDER BY
+        horas_semanais_comprometidas DESC;
+            
+    2. Lista de salas com horários livres e ocupados - Pode usar SQL e a linguagem de programação que achar melhor.
+    SELECT
+        BUILDING.name AS nome_predio,
+        ROOM.id AS id_sala,
+        CLASS_SCHEDULE.day_of_week AS dia_da_semana,
+        CLASS_SCHEDULE.start_time AS horario_inicio,
+        CLASS_SCHEDULE.end_time AS horario_fim,
+        SUBJECT.name AS nome_materia
+    FROM
+        ROOM
+    INNER JOIN
+        BUILDING ON BUILDING.id = ROOM.building_id
+    LEFT JOIN
+        CLASS_SCHEDULE ON CLASS_SCHEDULE.room_id = ROOM.id
+    LEFT JOIN
+        CLASS ON CLASS.id = CLASS_SCHEDULE.class_id
+    LEFT JOIN
+        -- A correção está aqui: a junção é com a tabela CLASS
+        SUBJECT ON SUBJECT.id = CLASS.subject_id
+    ORDER BY
+        nome_predio, id_sala, dia_da_semana, horario_inicio;
+        
+
