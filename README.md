@@ -25,8 +25,8 @@ Um MicroService que recebe pedidos e calcula a alocação para as caixas.
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
-    cd seu-repositorio
+    git clone https://github.com/Umizin/loja-manoel
+    cd loja-manoel
     ```
 
 2.  **Configure as Variáveis de Ambiente:**
