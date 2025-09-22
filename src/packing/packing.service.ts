@@ -27,7 +27,7 @@ interface CaixaEmUso {
   volumeOcupado: number;
 }
 
-// Tipos de caixas disponíveis
+// Tipos de caixas disponÃ­veis
 const caixasDisponiveis: Caixa[] = [
   {
     nome: 'Caixa 1',
@@ -83,7 +83,7 @@ export class PackingService {
         }
       }
 
-      // Se não coube em nenhuma caixa aberta, abre uma nova.
+      // Se nï¿½o coube em nenhuma caixa aberta, abre uma nova.
       if (!produtoEncaixotado) {
         const novaCaixa = this.encontrarMenorCaixaPossivel(produto);
         if (novaCaixa) {
@@ -95,13 +95,13 @@ export class PackingService {
         } else {
           // "catch" para o erro de nao ter caixas
           return {
-            erro: `O produto com dimensões ${produto.altura}x${produto.largura}x${produto.comprimento} não cabe em nenhuma caixa disponível.`,
+            erro: `O produto com dimensÃµes ${produto.altura}x${produto.largura}x${produto.comprimento} nÃ£o cabe em nenhuma caixa disponÃ­vel.`,
           };
         }
       }
     }
 
-    // 4. Formata a saída para o formato desejado.
+    // 4. Formata a saÃ­da para o formato desejado.
     return this.formatarSaida(caixasEmUso);
   }
 
